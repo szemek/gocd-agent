@@ -10,6 +10,7 @@ RUN apt-get update
 RUN apt-get install -y openjdk-8-jre-headless
 RUN apt-get install -y go-agent
 RUN apt-get install -y git
+RUN apt install unzip
 RUN su - go -c 'mkdir -p /var/go/.ssh'
 RUN su - go -c 'ssh-keyscan github.com > /var/go/.ssh/known_hosts'
 
@@ -32,6 +33,6 @@ RUN apt-get update && apt-get install yarn
 # PHP
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update
-RUN apt-get install -y --force-yes php7.0-common php7.0-cli php7.0-cgi php7.0-intl php7.0-fpm php7.0-mysql php7.0-curl php7.0-xml php7.0-bcmath php7.0-mcrypt php7.0-mbstring php7.0-gd
+RUN apt-get install -y --force-yes php7.0-common php7.0-cli php7.0-cgi php7.0-intl php7.0-fpm php7.0-mysql php7.0-curl php7.0-xml php7.0-bcmath php7.0-mcrypt php7.0-mbstring php7.0-gd php7.0-zip
 
 CMD ["/sbin/my_init"]
