@@ -9,16 +9,12 @@ RUN curl https://download.gocd.io/GOCD-GPG-KEY.asc | apt-key add -
 RUN apt update
 RUN apt install -y openjdk-8-jre-headless
 RUN apt install -y go-agent
-RUN apt install -y git
-RUN apt install unzip
+RUN apt install -y git wget htop ncdu tree unzip
 RUN su - go -c 'mkdir -p /var/go/.ssh'
 RUN su - go -c 'ssh-keyscan github.com > /var/go/.ssh/known_hosts'
 
-ADD files/etc/my_init.d/01_gocd_agent.sh /etc/my_init.d/01_gocd_agent.sh
-RUN chmod 0755 /etc/my_init.d/01_gocd_agent.sh
-
-ADD files/etc/my_init.d/02_ssh_key.sh /etc/my_init.d/02_ssh_key.sh
-RUN chmod 0755 /etc/my_init.d/02_ssh_key.sh
+ADD files/etc/my_init.d/*.sh /etc/my_init.d/
+RUN chmod 0755 /etc/my_init.d/*.sh
 
 # Python
 RUN apt install -y python-minimal
